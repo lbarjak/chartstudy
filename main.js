@@ -32,15 +32,24 @@ drawLine(ctx, [xMargin, yMargin], [width * 0.995 - xMargin, yMargin])
 drawLine(ctx, [xMargin, yMargin], [xMargin, height * 0.99 - yMargin])
 
 xTicks = () => {
-    for (i = 1; i <= 10; i++) {
-        let x = xMargin + 0.95 * width * i / 10
-        drawLine(ctx, [x, 0], [x, 20])
+    let ticks = 13
+    for (i = 1; i <= ticks; i++) {
+        let x = xMargin + 0.95 * width * i / ticks
+        drawLine(ctx, [x, 0], [x, height], 'gray')
     }
 }
 
 xTicks()
 
+yTicks = () => {
+    let ticks = 25
+    for (i = 1; i <= ticks; i++) {
+        let y = yMargin + 0.93 * width * i / ticks
+        drawLine(ctx, [0, y], [width, y], 'gray')
+    }
+}
 
+yTicks()
 
 
 
