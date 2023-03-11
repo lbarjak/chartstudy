@@ -18,37 +18,45 @@ function drawLine(ctx, begin, end, stroke = 'black', width = 1) {
 }
 
 window.ctx = graph.getContext('2d')
-graph.width = window.innerWidth * 0.95
-graph.height = window.innerHeight * 0.9
+let ratio = window.innerHeight / window.innerWidth
+graph.height = window.innerHeight
+graph.width = window.innerWidth
 let width = graph.width
 let height = graph.height
-let xMargin = width * 0.01
-let yMargin = height * 0.01
+
 ctx.fillStyle = 'lightgray'
 ctx.fillRect(0, 0, width, height)
-ctx.transform(1, 0, 0, -1, 0, height)
-ctx.translate(width * 0.002, height * 0.005)
-drawLine(ctx, [xMargin, yMargin], [width * 0.995 - xMargin, yMargin])
-drawLine(ctx, [xMargin, yMargin], [xMargin, height * 0.99 - yMargin])
+ctx.font = "24px serif";
+ctx.textAlign = "end"
+
+ctx.transform(0.9, 0, 0, -0.8, width * 0.07, height * 0.85)
+
+drawLine(ctx, [0, 0], [width, 0])
+drawLine(ctx, [0, 0], [0, height])
 
 xTicks = () => {
-    let ticks = 13
+    let ticks = 26
     for (i = 1; i <= ticks; i++) {
-        let x = xMargin + 0.95 * width * i / ticks
-        drawLine(ctx, [x, 0], [x, height], 'gray')
+        let x = width * i / ticks
+        //if (i % 2 - 1) {
+        drawLine(ctx, [x, -10], [x, height], 'gray')
+        //}
+    }
+}
+
+yTicks = () => {
+    let ticks = 30
+    for (i = 0; i <= ticks; i++) {
+        let y = height * i / ticks
+        drawLine(ctx, [-10, y], [width, y], 'gray')
+        ctx.save()
+        ctx.scale(1, -1)
+        ctx.strokeText(i - 5, -15, -(y + 8) + 15);
+        ctx.restore()
     }
 }
 
 xTicks()
-
-yTicks = () => {
-    let ticks = 25
-    for (i = 1; i <= ticks; i++) {
-        let y = yMargin + 0.93 * width * i / ticks
-        drawLine(ctx, [0, y], [width, y], 'gray')
-    }
-}
-
 yTicks()
 
 
