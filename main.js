@@ -1,5 +1,3 @@
-console.log(temps)
-
 let graph = document.getElementsByTagName('canvas')[0]
 
 function drawLine(ctx, begin, end, stroke = 'black', width = 1) {
@@ -26,7 +24,8 @@ let height = graph.height
 
 ctx.fillStyle = 'lightgray'
 ctx.fillRect(0, 0, width, height)
-ctx.font = "24px serif";
+let fontSize = 18
+ctx.font = fontSize + "px sans"
 ctx.textAlign = "end"
 
 ctx.transform(0.9, 0, 0, -0.8, width * 0.07, height * 0.85)
@@ -34,8 +33,16 @@ ctx.transform(0.9, 0, 0, -0.8, width * 0.07, height * 0.85)
 drawLine(ctx, [0, 0], [width, 0])
 drawLine(ctx, [0, 0], [0, height])
 
+drawYText = (i, y) => {
+    ctx.save()
+    ctx.scale(1, -1)
+    ctx.fillStyle = "gray";
+    ctx.fillText(i, -fontSize, -y + fontSize / 3);
+    ctx.restore()
+}
+
 xTicks = () => {
-    let ticks = 26
+    let ticks = 13
     for (i = 1; i <= ticks; i++) {
         let x = width * i / ticks
         //if (i % 2 - 1) {
@@ -45,19 +52,15 @@ xTicks = () => {
 }
 
 yTicks = () => {
-    let ticks = 30
+    let yTickMin = Math.round(Math.min(...temps))
+    let yTickMax = Math.round(Math.max(...temps))
+    let ticks = yTickMax - yTickMin
     for (i = 0; i <= ticks; i++) {
         let y = height * i / ticks
         drawLine(ctx, [-10, y], [width, y], 'gray')
-        ctx.save()
-        ctx.scale(1, -1)
-        ctx.strokeText(i - 5, -15, -(y + 8) + 15);
-        ctx.restore()
+        drawYText(i + yTickMin, y)
     }
 }
 
 xTicks()
 yTicks()
-
-
-
