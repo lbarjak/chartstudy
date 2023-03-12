@@ -17,14 +17,16 @@ const options3 = {
 };
 
 dates = () => {
-    console.log(diff)
+    //console.log(diff)
     for (i = date1.getTime() - 3600000; i <= date2.getTime(); i += 21600000) {
         newDate = new Date(i)
         xStickDates.push([
-            newDate.toLocaleString('hu-HU', options1).replaceAll(' ', ''),
-            newDate.toLocaleTimeString('hu-HU', options2),
+            newDate.toLocaleString('hu-HU', options1)
+                .replaceAll(' ', ''),
+            newDate.toLocaleTimeString('hu-HU', options2)
+                .replace(':00', '').replace('0', ''),
             newDate.toLocaleString('hu-HU', options3)
         ])
     }
-    console.log(xStickDates)
 }
+dates()

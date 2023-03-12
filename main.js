@@ -33,16 +33,25 @@ ctx.transform(0.9, 0, 0, -0.8, width * 0.07, height * 0.85)
 drawLine(ctx, [0, 0], [width, 0])
 drawLine(ctx, [0, 0], [0, height])
 
+drawXText = (text, x) => {
+    ctx.save()
+    ctx.scale(1, -1)
+    ctx.fillStyle = "gray"
+    ctx.textAlign = "center"
+    ctx.fillText(text, x, fontSize * 1.8)
+    ctx.restore()
+}
+
 drawYText = (i, y) => {
     ctx.save()
     ctx.scale(1, -1)
     ctx.fillStyle = "gray";
-    ctx.fillText(i, -fontSize, -y + fontSize / 3);
+    ctx.fillText(i, -fontSize, -y + fontSize / 3)
     ctx.restore()
 }
 
 xTicks = () => {
-    let ticks = 40
+    let ticks = xStickDates.length - 1
     for (i = 0; i <= ticks; i++) {
         let x = width * i / ticks
         if (i % 4 == 0) {
@@ -50,6 +59,7 @@ xTicks = () => {
         } else {
             drawLine(ctx, [x, -10], [x, 0], 'gray')
         }
+        drawXText(xStickDates[i][1], x)
     }
 }
 
@@ -67,4 +77,3 @@ yTicks = () => {
 xTicks()
 yTicks()
 
-dates()
