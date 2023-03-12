@@ -42,12 +42,14 @@ drawYText = (i, y) => {
 }
 
 xTicks = () => {
-    let ticks = 13
-    for (i = 1; i <= ticks; i++) {
+    let ticks = 40
+    for (i = 0; i <= ticks; i++) {
         let x = width * i / ticks
-        //if (i % 2 - 1) {
-        drawLine(ctx, [x, -10], [x, height], 'gray')
-        //}
+        if (i % 4 == 0) {
+            drawLine(ctx, [x, -10], [x, height], 'gray')
+        } else {
+            drawLine(ctx, [x, -10], [x, 0], 'gray')
+        }
     }
 }
 
