@@ -17,7 +17,6 @@ const options3 = {
 };
 
 dates = () => {
-    //console.log(diff)
     for (i = date1.getTime() - 3600000; i <= date2.getTime(); i += 21600000) {
         newDate = new Date(i)
         xStickDates.push([
