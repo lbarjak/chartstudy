@@ -51,9 +51,9 @@ drawYText = (i, y) => {
 }
 
 xTicks = () => {
-    let ticks = xStickDates.length - 1
-    for (i = 0; i <= ticks; i++) {
-        let x = width * i / ticks
+    let xTicks = xStickDates.length - 1
+    for (i = 0; i <= xTicks; i++) {
+        let x = width * i / xTicks
         if (i % 4 == 0) {
             drawLine(ctx, [x, -10], [x, height], 'gray')
         } else {
@@ -66,18 +66,35 @@ xTicks = () => {
         }
     }
 }
-
+let yTickMin = Math.round(Math.min(...temps.filter(x => x)))
+let yTickMax = Math.round(Math.max(...temps))
+let yTicks
 yTicks = () => {
-    let yTickMin = Math.round(Math.min(...temps.filter(x => x)))
-    let yTickMax = Math.round(Math.max(...temps))
-    let ticks = yTickMax - yTickMin
-    for (i = 0; i <= ticks; i++) {
-        let y = height * i / ticks
+    yTicks = yTickMax - yTickMin
+    for (i = 0; i <= yTicks; i++) {
+        let y = height * i / yTicks
         drawLine(ctx, [-10, y], [width, y], 'gray')
         drawYText(i + yTickMin, y)
     }
 }
 
+graph = (ticks) => {
+    ctx.save()
+    ctx.fillStyle = "blue"
+    console.log(yTicks)
+    console.log(height)
+    for (i = 0; i < temps.length; i++) {
+        if (i > temps.length / 2) {
+            ctx.fillStyle = "red"
+        }
+        ctx.beginPath();
+        ctx.arc(i, (height / yTicks) * (temps[i] - yTickMin), 2, 0, 2 * Math.PI, true);
+        ctx.fill();
+    }
+    ctx.restore()
+}
+
 xTicks()
 yTicks()
+graph()
 
