@@ -66,6 +66,7 @@ xTicks = () => {
         }
     }
 }
+
 let yTickMin = Math.round(Math.min(...temps.filter(x => x)))
 let yTickMax = Math.round(Math.max(...temps))
 let yTicks
@@ -78,11 +79,9 @@ yTicks = () => {
     }
 }
 
-graph = (ticks) => {
+graph = () => {
     ctx.save()
     ctx.fillStyle = "blue"
-    console.log(yTicks)
-    console.log(height)
     for (i = 0; i < temps.length; i++) {
         if (i > temps.length / 2) {
             ctx.fillStyle = "red"
