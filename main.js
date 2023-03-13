@@ -56,9 +56,9 @@ xTicks = () => {
     for (i = 0; i <= xTicks; i++) {
         let x = width * i / xTicks
         if (i % 4 == 0) {
-            drawLine(ctx, [x, -10], [x, height], 'gray')
+            drawLine(ctx, [x, -10], [x, height], 'black')
         } else {
-            drawLine(ctx, [x, -10], [x, 0], 'gray')
+            drawLine(ctx, [x, -10], [x, height], 'gray')
         }
         drawXText(xStickDates[i][1], x)
         if (i % 4 == 2) {
