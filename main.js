@@ -33,12 +33,12 @@ ctx.transform(0.9, 0, 0, -0.8, width * 0.07, height * 0.85)
 drawLine(ctx, [0, 0], [width, 0])
 drawLine(ctx, [0, 0], [0, height])
 
-drawXText = (text, x) => {
+drawXText = (text, x, y = 0) => {
     ctx.save()
     ctx.scale(1, -1)
     ctx.fillStyle = "gray"
     ctx.textAlign = "center"
-    ctx.fillText(text, x, fontSize * 1.8)
+    ctx.fillText(text, x, y + fontSize * 1.8)
     ctx.restore()
 }
 
@@ -60,6 +60,10 @@ xTicks = () => {
             drawLine(ctx, [x, -10], [x, 0], 'gray')
         }
         drawXText(xStickDates[i][1], x)
+        if (i % 4 == 2) {
+            drawXText(xStickDates[i][2], x, fontSize)
+            drawXText(xStickDates[i][0], x, 2 * fontSize)
+        }
     }
 }
 
