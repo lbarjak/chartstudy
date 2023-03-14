@@ -69,10 +69,12 @@ xTicks = () => {
     }
 }
 
-let yTickMin = Math.round(-0.4999999999999 + Math.min(...temps.filter(x => x)))
-let yTickMax = Math.round(0.4999999999999 + Math.max(...temps))
+let yTickMin = 0
+let yTickMax = 20
 let yTicks
 yTicks = () => {
+    yTickMin = Math.round(-0.4999999999999 + Math.min(...temps.filter(x => x)))
+    yTickMax = Math.round(0.4999999999999 + Math.max(...temps))
     yTicks = yTickMax - yTickMin
     for (i = 0; i <= yTicks; i++) {
         let y = height * i / yTicks
