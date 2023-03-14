@@ -69,8 +69,8 @@ xTicks = () => {
     }
 }
 
-let yTickMin = Math.round(Math.min(...temps.filter(x => x)))
-let yTickMax = Math.round(Math.max(...temps))
+let yTickMin = Math.round(-0.4999999999999 + Math.min(...temps.filter(x => x)))
+let yTickMax = Math.round(0.4999999999999 + Math.max(...temps))
 let yTicks
 yTicks = () => {
     yTicks = yTickMax - yTickMin
